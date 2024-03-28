@@ -1,4 +1,4 @@
-Ce repository contient les fichiers pour le devoir final de XML-TEI proposé dans le cadre du Master TNAH - Promo 2024.
+Ce repository contient les fichiers pour le devoir final de XSLT proposé dans le cadre du Master TNAH - Promo 2024.
 
 Le fichier XSLT
 
