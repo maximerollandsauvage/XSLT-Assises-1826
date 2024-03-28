@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?xml-model href="TEI_Assises_1826.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="TEI_Assises_1826.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
+
+
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+    <teiHeader>
+        
+        <fileDesc>
+            <titleStmt>
+                <title>Compte-rendu de la 2e session des Assises de l'Isère</title>
+                <author> <!--Auteur du compte-rendu-->
+                    <forename>Michoud</forename>
+                    <surname>Jean-Claude-Luc</surname>
+                    <affiliation>Président de la Cour d'Assise</affiliation>
+                </author>
+                <respStmt><!--Auteur de l'encodage-->
+                    <resp>Encodage réalisé pour le devoir final de XML-TEI proposé dans le cadre du Master TNAH - Promo 2024</resp>
+                    <persName>
+                        <forename>Rolland</forename>
+                        <surname>Maxime</surname>
+                    </persName>
+                    <note>Transcription réalisée dans le cadre du cours de Arnaud-Dominique Houte "Police-Crime-Justice" en L3 22/23 à Sorbonne Université par Maxime Rolland</note>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <p>Le document original se trouve aux Archives Nationales à Pierrefitte, mais n'a pas encore été numérisé. 
+                   Il a seulement été pris en photo, puis retranscrit, dans le cadre du cours de Arnaud-Dominique Houte, en L3 22/23 à Sorbonne Université</p>
+            </publicationStmt>
+            <!--Il n'y a pas eu de publication de ce compte-rendu. Nous n'avons donc pas beaucoup d'informations à ajouter dans le <publicationStmt/>--> 
+            <sourceDesc> <!-- Information sur le manuscrit -->
+                <msDesc>
+                    <msIdentifier>
+                        <country>France</country>
+                        <settlement>Paris</settlement>
+                        <repository>Archives nationales</repository>
+                        <collection>Ministère de la Justice</collection>
+                        <idno>BB/20/27</idno>
+                    </msIdentifier>
+                    <msContents>
+                        <p>Chaque Président de Cour d'Assise avait l'obligation d'adresser un compte-rendu de session au Ministre de la Justice après chaque session. 
+                            Les Archives Nationales les conservent de 1821 à 1895. Ici, nous avons le compte-rendu de la 2e session, qui s'est tenue du 13 au 24 février 1826.
+                            Il donne à voir 17 cas, avec leur accusation et les circonstances des faits, le verdict de la Cour et la peine prononcée.</p>
+                    </msContents>
+                    <physDesc>
+                        <p>Huit feuilles de papier ; écriture à l’encre noire.</p>
+                        <!-- N'ayant pas eu accès direct au document, nous n'avons pas ajouté d'information particulières sur les caractéristiques physiques du manuscrit-->
+                    </physDesc>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        
+        <encodingDesc> <!--Le projet d'encodage est développé dans l'ODD. Mais nous donnons ici une idée suffisante des objectifs pour qu'un lecteur puisse s'y retrouver sans lire l'ODD-->
+            <p>Ce projet d'encodage fait suite à un travail d'analyse effectué pour le cours Police-Crime-Justice du Professeur Arnaud-Dominique Houte. 
+                Etant donné le nombre important de compte-rendus de Cour d'Assise rédigés au XIXe siècle, il parait intéressant de pouvoir constituer un modèle, pour en encoder d'autres.
+                L'idée est aussi de pouvoir établir une base de données statistiques avec les types de condamnations, les durées, les types d'accusation, le genre et l'âge des accusés etc...
+                Cela, afin de pouvoir les comparer avec les résultats des autres cours d'assises en France sur la même période, voire sur une période plus longue. 
+                Cette étude permettrait de comprendre le comportement judiciaire des français au XIXe siècle, ainsi que d'observer les premières décennies d'application du code pénal</p>
+            <classDecl> <!--Utilisation d'une taxonomy pour encoder les termes judiciaires qui apparaissent dans le texte -->
+                <taxonomy  xml:id="accusation">
+                    <desc>Cette taxonomy permet de recenser les différents types d'accusation. Nous ne prenons en compte que les accusations effectivement portées, sans ajouter les accusations qui auraient pu l'être. Les articles sont issus du <ref target="https://ledroitcriminel.fr/la_legislation_criminelle/anciens_textes/code_penal_1810/code_penal_1810_1.htm">code pénal de 1810.</ref></desc>
+                    <category xml:id="tentative_meurtre">
+                        <catDesc>Il n'y a pas de meurtre dans les cas présentés ici, mais une tentative. La tentative est punie de la même façon que le meurtre avéré. ARTICLE 2</catDesc>
+                    </category>
+                    <category xml:id="vol">
+                        <catDesc>Il y a plusieurs types de vols dans les cas présentés ici : vol de bétail, vol d'objets, vol d'église. Le vol est le crime le plus puni au début du XIXe siècle. ARTICLE 379</catDesc>
+                    </category>
+                    <category xml:id="bigamie">
+                        <catDesc>Cas uique de bigamie. Très peu d'accusations de ce genre.ARTICLE 340</catDesc>
+                    </category>
+                    <category xml:id="coups_blessures">
+                        <catDesc>La disctinction avec la tentative de meurtre est l'intention de donner la mort. A noter qu'il y avait une catégorie spéciale pour les "coups et blessures sur ascendant" (1 cas ici). ARTICLE 309 et ARTICLE 312</catDesc>
+                    </category>
+                    <category xml:id="viol">
+                        <catDesc>Le terme viol est utilisé ici mais n'apparait pas dans le code pénal de 1810. ARTICLE 331</catDesc>
+                    </category>
+                </taxonomy>
+                <taxonomy  xml:id="verdict">
+                    <desc>Peines prévues au code pénal de 1810. ARTICLE 7</desc>
+                    <category xml:id="acquittement">
+                        <catDesc>Lorsque le Jury décide de libérer l'accusé</catDesc>
+                    </category>
+                    <category xml:id="travaux_forces">
+                        <catDesc>Deux types de travaux forcés : à perpétuité et à temps</catDesc>
+                    </category>
+                    <category xml:id="reclusion">
+                        <catDesc>La réclusion est la prison, sans les travaux forcés (bagne) lorsqu'il y a un crime</catDesc>
+                    </category>
+                    <category xml:id="peine_correctionnelle">
+                        <catDesc>Les peines correctionnelles sont le plus souvent l'emprisonnement, c'est à dire la prison, mais pour un délit. Généralement, elles sont prononcés lorsque les faits ne sont pas jugés suffisament graves pour une peine criminelle</catDesc>
+                    </category>
+                    <category xml:id="renvoi">
+                        <catDesc>Le renvoi est prononcé lorsqu'il n'y a pas assez d'éléments pour un jugement. L'affaire sera alors jugée lors d'une prochaine session</catDesc>
+                    </category>
+                </taxonomy>
+                <taxonomy  xml:id="duree">
+                    <desc>Durée des peines prononcées, que ce soit pour l'emprisonnement, la réclusion ou les travaux forcés</desc>
+                    <category xml:id="temps">
+                        <catDesc>Il y a une grande diversité dans les années de peine prononcées. Elles vont de deux à seize ans</catDesc>
+                    </category>
+                    <category xml:id="perpetuite">
+                        <catDesc>Ici, la peine de mort n'est pas prononcée, mais la perpétuité, si. On peut considérer cela comme équivalent, au vu des conditions de vie dans les bagnes</catDesc>
+                    </category>
+                </taxonomy>
+                <taxonomy  xml:id="ca">
+                    <desc>Les circonstances aggravantes jouent sur le prononcé de la peine lors d'un vol et peuvent valoir la perpétuité pour un vol. L'infraction passe de "simple" à "qualifiée". Art.381-386 Code Pénal. D'autres circonstances aggravantes ne figurant pas dans les cas présentés ici existent</desc>
+                    <category xml:id="recidive">
+                        <catDesc>Lorsque l'accusé a déjà été condamné précédemment, peu importe le crime</catDesc>
+                    </category>
+                    <category xml:id="violence">
+                        <catDesc>Lorsque le vol a été accompagné d'actes de violence</catDesc>
+                    </category>
+                    <category xml:id="nuit">
+                        <catDesc>Lorsque le vol a été commis la nuit</catDesc>
+                    </category>
+                    <category xml:id="escalade">
+                        <catDesc>Lorsque l'accusé a grimpé à un étage</catDesc>
+                    </category>
+                    <category xml:id="effraction">
+                        <catDesc>Lorsque le vol a été commis par effraction</catDesc>
+                    </category>
+                    <category xml:id="reunion">
+                        <catDesc>Lorsque le vol a été commis par deux personnes ou plus</catDesc>
+                    </category>
+                    <category xml:id="habitation">
+                        <catDesc>Lorsque le vol est commis dans une maison ou un endroit habité. La question se pose pour l'église (Maison de Dieu ou pas)</catDesc>
+                    </category>
+                    <category xml:id="chemin_public">
+                        <catDesc>Lorsque le vol est commis sur un chemin public, donc accessible à tout le monde</catDesc>
+                    </category>
+                </taxonomy>
+            </classDecl>
+        </encodingDesc> 
+        
+        <profileDesc> <!-- Informations sur les éléments apparaissant dans le body -->
+            <settingDesc>
+                <p>Cour d'assise de Grenoble : compétence pour le département de l'Isère, de la Drôme et des Hautes-Alpes.</p>
+            </settingDesc>
+            <particDesc>
+                <listPerson>
+                    <person xml:id="Monseigneur" sex="masculin">
+                        <persName>Pierre-Denis de Peyronnet</persName>
+                        <occupation>Ministre de la Justice</occupation>
+                        <note>Ceci est le destinataire du compte-rendu</note>
+                    </person>
+                    <person xml:id="JChaix">
+                        <persName>Joseph Chaix</persName>
+                        <gender>masculin</gender>
+                        <age>22</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="JFRecigard">
+                        <persName>Jean-François Recigard</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>renvoi</p></state>
+                    </person>
+                    <person xml:id="LRecigard">
+                        <persName>Louis Recigard</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>renvoi</p></state>
+                    </person>
+                    <person xml:id="APrieur">
+                        <persName>Antoine Prieur</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <note>dit "Martini"</note>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="JASimon">
+                        <persName>Jean-Augustin Simon</persName>
+                        <gender>masculin</gender>
+                        <age>20</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="FBoisfrieux">
+                        <persName>François Boisfrieux</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>acquitté</p></state>
+                    </person>
+                    <person xml:id="FFaunier">
+                        <persName>François Faunier</persName>
+                        <gender>masculin</gender>
+                        <age>23</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="CGiraux">
+                        <persName>Claude Giraud</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="CDurand">
+                        <persName>Claude Durand</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="PDeysieu">
+                        <persName>Pierre Deysieu</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="GNLasset">
+                        <persName>Guillaume Naudy Lasset</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>coups et blessures</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="JFauque">
+                        <persName>Jacques Fauque</persName>
+                        <gender>masculin</gender>
+                        <age>18</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="AClavel" gender="masculin">
+                        <persName>Antoine Clavel</persName>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="AGuimet">
+                        <persName>Antoine Guimet</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>viol</p></trait>
+                        <state><p>acquitté</p></state>
+                    </person>
+                    <person xml:id="JTerray">
+                        <persName>Jospeh Terray</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>acquitté</p></state>
+                    </person>
+                    <person xml:id="PBerthot">
+                        <persName>Pierre Berthot</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>coups et blessures</p></trait>
+                        <state><p>acquitté</p></state>
+                    </person>
+                    <person xml:id="JFGros">
+                        <persName>Jacques-François Gros</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>bigamie</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="AHardieu">
+                        <persName>Anne Hardieu</persName>
+                        <gender>feminin</gender>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>condamnée</p></state>
+                    </person>
+                    <person xml:id="PMagrin">
+                        <persName>Pierre Magrin</persName>
+                        <age>inconnu</age>
+                        <trait><p>vol</p></trait>
+                        <state><p>acquitté</p></state>
+                    </person>
+                    <person xml:id="JeanBayle">
+                        <persName>Jean Bayle</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>tentative de meurtre</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                    <person xml:id="JosephBayle">
+                        <persName>Jospeh Bayle</persName>
+                        <gender>masculin</gender>
+                        <age>inconnu</age>
+                        <trait><p>tentative de meurtre</p></trait>
+                        <state><p>condamné</p></state>
+                    </person>
+                </listPerson> 
+            </particDesc>
+            <creation>
+                <date when-iso="1826-04-15">15 avril 1826</date>
+                <country key="FR">France</country>
+                <lang xml:lang="fr"/>
+            </creation>
+        </profileDesc>
+        
+        <revisionDesc> <!-- étapes de l'encodage-->
+            <change when="2022-12-01" who="Maxime Rolland">Transcription du <ref target="idno">manuscrit</ref></change>
+            <change when="2024-01-15" who="Maxime Rolland">Encodage en format TEI de la transcription</change>
+            <change when="2024-02-20" who="Maxime Rolland">Création de l'ODD et customisation des règles</change>
+            <change when="2024-02-23" who="Maxime Rolland">Suppression malencontreuse de l'ODD. Nouvelle ODD</change>
+        </revisionDesc>
+    
+    
+    </teiHeader>
+    <text>
+        <body>
+            <opener>
+            <salute>Monseigneur</salute>
+            </opener>
+            
+            <div type="introduction">
+                <p>La session de la cour d'assises qui s'est ouverte
+                <lb/>à Grenoble le <date when="1826-02-13">13 février</date> dernier pour le 1er trimestre
+                <lb/>du département de l'Isère et que j'ai l'honneur de
+                <lb/>présider s'est terminée le <date when="1826-02-24">24</date> de ce même mois.
+                </p>
+                <p>Dix-sept causes y ont été portés. Voici l'analyse
+                <lb/>de chacune d'elles, et la décision portée par les
+                <lb/>jurés sur chaque accusation. 
+                </p>
+            </div>
+            
+            <div n="1" type="part">
+                <p><num>1°</num><rs type="person" ref="#JChaix">Joseph Chaix</rs>, âgé de 22 ans environ était accusé
+                <lb/>de <term type="accusation" ref="#vol">deux vols de mules et un poulain</term>, de
+                <lb/><term type="ca" ref="reunion">complicité avec un autre individu</term>, qui s'était
+                <lb/>échappé de prison de Chambéry d'où le premier
+                <lb/>a été extradé : arrêtés en Savoie, où ils avaient été
+                <lb/>saisis, ayant encore en leur pouvoir les animaux volés,
+                <lb/>le seul des coupables traduit devant la cour a été
+                <lb/>condamné à <term type="duree" ref="#temps">huit années</term> de <term type="peine" ref="#reclusion">réclusion</term>, le vol ayant été
+                <lb/>commis pendant <term type="ca" ref="#nuit">la nuit</term>, par <term type="ca" ref="#reunion">deux personnes</term> et
+                
+                <pb n="1" type="end"/>
+                
+                <lb/> dans une écurie dépendant <term type="#ca" ref="#habitation">d'une maison habitée</term>.</p>
+            </div>
+            
+            <div n="2" type="part">
+                <p><num>2°</num><rs type="person" ref="#JFRecigard">Jean François</rs>  et <rs type="person" ref="#LRecigard">Louis</rs> <unclear>Recigard</unclear>, frères, accusés
+                <lb/>d'un <term type="#accusation" ref="#vol">vol</term> de cochon ; commis dans les mêmes circonstances,
+                <lb/>ont été <term type="verdict" ref="#renvoi">renvoyés à leur requête à la session prochaine</term>,
+                <lb/>par l'offre qu'ils ont faites et réalisées de consigner les
+                <lb/>frais de citations et de transports des témoins. Le temps leur
+                <lb/>avait manqué disaient-ils pour établir leurs moyens
+                <lb/>de défense.</p> 
+            </div>
+            
+            <div n="3" type="part">
+                <p><num>3°</num><rs type="person" ref="#APrieur">Antoine</rs><unclear> Prieur</unclear>, dit Martini, forçat libéré, accusé
+                <term type="accusation" ref="#vol">d'enlèvement</term> de trois draps de lits, commis <term type="ca" ref="#nuit">la nuit</term>, dans
+                <lb/>une grange dépendant <term type="ca" ref="#habitation">d'une maison habitée</term>, et à l'aide
+                <lb/><term type="ca" ref="#escalade">d'escalade</term> n'a cependant été condamné qu'à <term type="duree" ref="#temps">dix</term>
+                <lb/>années de <term type="peine" ref="#travaux_forces">travaux forcés</term>, quoiqu'en <term type="ca" ref="#recidive">récidive</term>, la
+                <lb/>circonstance d'escalade ayant été écarté par la
+                <lb/>déclaration du jury.</p>
+            </div>
+            
+            <div n="4" type="part">  
+                <p><num>4°</num><rs type="person" ref="#JA">Jean Augustin Simon</rs>, âgé d'environ 20 ans,
+                <lb/>accusé du <term type="accusation" ref="#vol">vol d'une montre</term>, lequel aurait eu lieu à l'aide
+                <lb/><term type="ca" ref="#escalade">d'escalade</term> et <term type="ca" ref="#effraction">d'effraction</term>, n'a été condamné
+                <lb/>qu'à <term type="duree" ref="#temps">trois ans</term> <term type="verdict" ref="#peine_correctionnelle">d'emprisonnement</term>, les deux
+                <lb/>circonstances n'ayant pas été retenues par la déclaration du jury.</p>
+            </div> 
+            
+            <div n="5" type="part">
+                <p><num>5°</num><rs type="person" ref="#FBoisfrieux">François Boisfrieux</rs>, accusé d'avoir <term type="accusation" ref="#vol">volé de l'argent
+                <lb/>et des effets à un curé de sa commune</term>, pendant l'office
+                <lb/>divin et <term type="ca" ref="#habitation">dans sa maison</term> où il se serait introduit à
+                <lb/>l'aide <term type="ca" ref="#escalade">d'escalade</term> et <term type="ca" ref="#effraction">d'effraction</term>, a été <term type="verdict" ref="#acquittement" >acquitté</term> malgré
+                <lb/>sa mauvaise réputation, la procédure et les débats
+                <lb/>n'ayant fourni que de très faibles présomptions à
+                <lb/>l'appui de l'accusation. Un seul témoin, étranger
+                <lb/>au pays qu'il traversait en mendiant croyait
+                <lb/>reconnaître l'accusé pour un des deux individus
+                <lb/>qu'il avait aperçu au presbytère au moment
+                <lb/>du vol. Les variations dans lesquelles il est tombé aux
+                <lb/>débats n'ont pas permis aux juré d'ajouter une
+                <lb/>foi entière à cette reconnaissance.</p>
+            </div>
+            
+                <pb n="2" type="end"/>
+            
+            <div n="6" type="part">
+                <p><num>6°</num><rs type="person" ref="#FFaunier">François Faunier</rs>, âgé de 23 ans, accusé <term type="accusation" ref="#vol">d'un vol</term>
+                <lb/>de 23 moutons, commis la <term type="ca" ref="#nuit">nuit</term> et dans une <term type="ca" ref="#habitation">écurie
+                <lb/>dépendante d'une maison d'habitation</term> a été condamné
+                <lb/>à <term type="duree" ref="#temps">6 ans</term> de <term type="verdict" ref="#reclusion">réclusion</term>.</p>
+            </div>
+            
+            <div n="7" type="part">
+                <p><num>7°</num>Trois individus accusés <term type="accusation" ref="#vol">d'enlèvement d'une somme
+                <lb/>d'argent</term> assez considérable, auraient commis ce vol avec
+                <lb/>toutes les circonstances qui pourraient entraîner l'application
+                <lb/>de la peine capitale. Les jurés ont néanmoins écarté
+                <lb/><term type="ca" ref="#violence">la violence</term>, sur le motif qu'elle ne leur a pas paru
+                <lb/>suffisamment caractérisée, par la seule circonstances que le
+                <lb/>voleur en s'échappant, aurait renversé d'un coup de coude
+                <lb/>le propriétaire d'argent qui les prenant pour des
+                <lb/>agents de l'autorité <gap reason="illegible" quantity="2" unit="word"/>dans leur <gap reason="illegible" quantity="1" unit="word"/> et
+                 <lb/>ainsi <rs type="person" ref="#CGiraud">Claude Giraud</rs> et <rs type="person" ref="#CDurand">Claude Durand</rs>, les deux
+                <lb/>principaux coupables, n'ont été condamnés qu'à
+                <lb/><term type="duree" ref="#temps">16 années</term> de <term type="verdict" ref="#travaux_forces">travaux forcés</term> et <rs type="person" ref="#PDeysieu">Pierre Deysieu</rs> à <term type="duree" ref="#temps">12
+                <lb/>ans</term>. Les deux derniers sont résolus à se pourvoir
+                <lb/>en cassation.
+                </p>
+                <p>Les débats de cette cause se sont compliqués de 
+                <lb/>graves incidents. Trois témoins assignés à <gap reason="illegible" quantity="2" unit="word"/>
+                <lb/>ont été convaincus de faux témoignages une instruction 
+                <lb/>avait été commencée à ce sujet et tous les éléments
+                <lb/>en sont consignés dans le procès verbal de séance. <note type="opinion_personnelle">Mais
+                <lb/>comme ils se rétractèrent avant la clôture des débats
+                <lb/>et que l'accusation a triomphé, je n'ai pas cru devoir
+                <lb/>y donner suite. Des renseignements positifs ont d'ailleurs
+                <lb/>fait connaître que leurs déclarations avaient été 
+                <lb/>altérées plus par complaisance que par 
+                <lb/>la corruption.</note>
+                </p>
+                <p>Le principal accusé, Claude Giraud, né
+                <lb/>et domicilié à Villeurbanne, aux portes de Lyon, 
+                <lb/>paraît faire parti d'une association de malfaiteurs. 
+                <lb/><note type="opinion_personnelle">Il est important pour la société qu'il en soit 
+                <lb/>séquestré pour longtemps.</note> 
+                </p> 
+            </div>
+            
+            <div n="8" type="part">
+                <p><num>8°</num><rs type="person" ref="#GNLasset">Guillaume Naudy Lasset</rs>, accusé d'avoir 
+            
+            <pb n="3" type="end"/>   
+            
+                <lb/>D'avoir<!-- répétition du mot --> porté <term type="accusation" ref="#coups_blessures">des coups et causé une blessure à son père</term>, a 
+                <lb/>présenté aux débats pour sa défense, le fait qu'il y aurait 
+                <lb/>été provoqué par des violences graves. L'excuse admise 
+                <lb/>par le jury, la cour a cru devoir lui faire l'application 
+                <lb/>d'une simple peine correctionnelle, d'après la jurisprudence 
+                <lb/>de la cour de cassation, qui n'admet nulle exception au 
+                <lb/>principe que la provocation modifie la peine prévue 
+                <lb/>par le code pénal. <note type="opinion_personnelle">Il est probable que dans l'absence 
+                <lb/>de cette décision, la cour ait pensé que <note type="circonstances_attenuantes">l'excuse tirée 
+                <lb/>de la provocation</note> ne pouvait pas être admise lorsqu'il 
+                <lb/>s'agissait de blessures d'un fils à son père.</note>
+                <lb/>Naudy Lasset a été condamné à <term type="duree" ref="#temps">deux ans</term> <term type="verdict" ref="#peine_correctionnelle">d'emprisonnement</term>, 
+                <lb/>maximum de la peine prévue par la loi.</p>
+            </div>
+                
+            <div n="9" type="part">
+                <p><num>9°</num><rs type="person" ref="#JFauque">Jacques <unclear>Fauque</unclear></rs>, âgé de 18 ans, accusé de <term type="accusation" ref="#vol">tentative 
+                <lb/>de vol</term> avec <term type="ca" ref="#escalade">escalade</term> et <term type="ca" ref="#effraction">effraction</term>a été condamné à 
+                <lb/><term type="duree" ref="#temps">7 ans</term> <del rend="strike">d'emprisonnement</del> <term type="verdict" ref="#reclusion"><add>de réclusion</add></term>. Le jury avait écarté les deux 
+                <lb/>circonstances, mais il était en <term type="ca" ref="#recidive">récidive</term>, à l'occasion d'une 
+                <lb/>condamnation à la réclusion prononcée contre lui avant 
+                <lb/>qu'il eut atteint sa 16e année. Cette peine avait été 
+                <lb/>convertie en deux années d'emprisonnement, attendu 
+                <lb/>que la déclaration portait qu'il avait agit sans 
+                <lb/>discernement.</p>
+            </div>
+                
+            <div n="10" type="part">
+                <p><num>10°</num><rs type="person" ref="#AClavel">Antoine Clavel</rs> accusé de <term type="accusation" ref="#vol">vol</term> commis <term type="ca" ref="#nuit">la nuit</term> 
+                <lb/>et dans <term type="ca" ref="#habitation">une maison habitée</term> a été condamné en vertu 
+                <lb/>de la loi modificative du code pénal et attendu 
+                <lb/>qu'il existait dans la cause des circonstances atténuantes 
+                <lb/>au maximum de la peine prévue par l'article 401 du code pénal.
+                </p>
+                <p>Ce condamné, <note type="circonstances_attenuantes">père d'une nombreuse famille en 
+                <lb/>bas âge et dont il est le seul soutien</note>, a inspiré par  
+                <lb/>son repentir un intérêt très vif à la cour et aux jurés. 
+                <lb/><note type="circonstances_attenuantes">Sa misère ne lui a pas permis de résister à une 
+                <lb/>tentation</note> d'autant plus violente qu'il y avait une 
+                <lb/>grande facilité à commettre le vol ; il s'est pourvu 
+                <lb/>en commutation de peine et <note type="opinion_personnelle">je suis chargé 
+                <lb/>d'exprimer à votre grandeur les vœux formés par les jurés et les magistrats de la Cour </note>
+                
+            <pb n="4" type="end"/>
+            
+                <lb/><note type="opinion_personnelle">en faveur du suppliant. Une peine de deux années 
+                <lb/>d'emprisonnement paraîtrait une expiation suffisante 
+                <lb/>de la faute qu'il a commis.</note>
+                </p>  
+            </div>  
+            
+            <div n="11" type="part">
+                <p><num>11°</num><rs type="person" ref="#AGuimet">Antoine Guimet</rs>, accusé de <term type="accusation" ref="#viol">tentative de viol</term> 
+                <lb/>à l'aide de <term type="ca" ref="#violence">violence</term>, a été <term type="verdict" ref="#acquittement">acquitté</term>. Le témoignage de celle 
+                <lb/>qu'il a voulu rendre sa victime, seul fait à sa charge,
+                <lb/>a paru aux jurés par les preuves d'alibi 
+                <lb/>qu'il a administré. <note type="opinion_personnelle">Tout me porte à penser que 
+                <lb/>les preuves sont mensongères, mais il a été impossible de 
+                <lb/>l'établir suffisamment aux débats</note>.  <note type="circonstances_attenuantes">La circonstance 
+                <lb/>que l'accusé s'était volontairement constitué prisonnier</note> 
+                <lb/>a fait pencher la balance en sa faveur.</p> 
+            </div>
+            
+            <div n="12" type="part">
+                <p><num>12°</num><rs type="person" ref="#JTerray">Joseph Terray</rs>, accusé d'un <term type="accusation" ref="#vol">vol d'un habit</term> commis 
+                <lb/>dans un <term type="ca" ref="#chemin_public">chemin public</term> a été <term type="verdict" ref="#acquittement">acquitté</term>. L'objet volé était d'une 
+                <lb/>faible valeur, et le vol n'étant qu'une simple soustraction 
+                <lb/>faite sur une toiture, les jurés ont sans doute pensé 
+                <lb/>que la peine qui allait lui être appliqué était trop 
+                <lb/>sévère. <note type="circonstances_attenuantes">Il avait d'ailleurs tenu jusqu'à cette époque 
+                <lb/>une fort bonne conduite</note> et il affirmait que l'objet 
+                <lb/>volé qu'il restitué bientôt après avait été trouvé par lui 
+                <lb/>sur la grande route.</p> 
+            </div>
+            
+            <div n="13" type="part">
+                <p><num>13°</num><rs type="person" ref="#PBerthot">Pierre Berthot</rs> accusé de <term type="accusation" ref="#coups_blessures">voie de fait</term> en la 
+                <lb/>gendarmerie, suivie d'effusion de sang, a été <term type="verdict" ref="#acquittement">acquitté 
+                <lb/>à l’unanimité</term>. La procédure, et surtout les débats, 
+                <lb/>n’ont fourni aucune preuve à l’appui de l’accusation. 
+                <lb/>Il avait été entendu comme témoin dans l'information 
+                <lb/>et <note type="circonstances_attenuantes">s’était volontairement constitué prisonnier</note>, lorsqu’il 
+                <lb/>avait appris qu’on le désignait comme un des auteurs 
+                <lb/>de l’attaque faite sur les gendarmes. Les principaux 
+                <lb/>accusés avaient été déchargés d’accusation, dans 
+                <lb/>une précédente session.</p>
+            </div>
+            
+            <div n="14" type="part">
+                <p><num>14°</num><rs type="person" ref="#JFGros">Jacques François Gros</rs>, accusé de <term type="accusation" ref="#bigamie">Bigamie</term>, 
+                <lb/>a été condamné à <term type="duree" ref="#temps">cinq années</term> de <term type="verdict" ref="#reclusion">réclusion</term>. Sa 
+                <lb/>défense était fondée uniquement sur ce qu’il croyait 
+                <lb/>son premier mariage nul. Cette exception a été
+                
+                <pb n="5" type="end"/>
+                               
+                <lb/>écartée, pour le double motif, qu’il n’était pas établi qu’il 
+                <lb/>fut de bonne foi ; et que dans ce cas-là même, il devait faire 
+                <lb/>prouver en cas du moins demander la nullité du premier 
+                <lb/>lien, avant que d'en contracter un second.</p> 
+            </div>
+            
+            <div n="15" type="part">
+                <p><num>15°</num><rs type="person" ref="#AHardieu">Anne Hardieu</rs> <term type="ca" ref="#recidive">déjà condamnée en 1812</term>, à six années
+                <lb/>de travaux forcés, pour avoir <term type="accusation" ref="#vol">volé des <unclear>troncs</unclear> d’église</term>, 
+                <lb/>a signalé son retour dans le département par des vols 
+                <lb/>nombreux de la même espèce, arrêtée par les forces de la 
+                <lb/>police qui depuis longtemps surveillent ses démarches, 
+                <lb/>elle a été trouvée en possession d’une si grande quantité 
+                <lb/>de petite monnaie, que ses crimes étaient pour ainsi dire 
+                <lb/>prouvée par cela seul. La circonstance de la récidive 
+                <lb/>lui a fait appliquer la peine de <term type="verdict" ref="#travaux_forces">travaux forcés</term> à 
+g                <lb/><term type="duree" ref="#perpetuite">perpétuité</term>. <note type="opinion_personnelle">C'est d'ailleurs un être profondément 
+                <lb/>corrompu</note>.</p>
+            </div>
+            
+            <div n="16" type="part">
+                <p><num>16°</num><rs type="person" ref="#PMagrin">Pierre Magrin</rs> accusé de <term type="accusation" ref="#vol">vol</term> commis avec 
+                <lb/><term type="ca" ref="#violence">violence</term>, sur un <term type="ca" ref="#chemin_public">chemin public</term>, a été <term type="verdict" ref="#acquittement">acquitté</term>. Le 
+                <lb/>plaignant, ecclésiastique, octogénaire, a si souvent varié 
+                <lb/>sur la somme dont il était porteur sur celle qui lui 
+                <lb/>aurait été prise, ainsi que sur les circonstances qui avaient 
+                <lb/>accompagné sa première déclaration, que la 
+                <lb/>reconnaissance formelle, qu’il faisait de l’accusé, pour 
+                <lb/>être l’auteur du crime, a dû être <unclear>suspectée</unclear> comme 
+                <lb/>étant le résultat d’une erreur. <note type="opinion_personnelle">Cette déclaration 
+                <lb/>du Jury, la seule de la session, qui puisse être critiquée, 
+                <lb/>est une véritable calamité, pour le canton où le 
+                <lb/>crime a été commis, attendu qu’il a été employé des 
+                <lb/>manœuvres coupables pour établir l’alibi de 
+                <lb/>l’accusé. Je vais dire néanmoins que les Jurés ont 
+                <lb/>été dirigés par des motifs irréprochables. C’est 
+                <lb/>l’accusateur lui-même qui a détruit leur conviction</note>.</p>
+            </div>
+            
+            <div n="17" type="part">
+                <p><num>17°</num>Enfin, deux cousins, <rs type="person" ref="#JeanBayle">Jean</rs> et <rs type="person" ref="#JosephBayle">Joseph Bayle</rs>, 
+                <lb/>le premier garde forestier, accusé d’avoir de guet
+                <lb/>apens et avec préméditation, <term type="accusation" ref="#tentative_meurtre">tenté d’homicider</term> 
+                <lb/>un individu, en lui tirant un coup de fusil et en 
+                <lb/>l’assaillant ensuite à coups de pierres, ont été, 
+                
+                <pb n="6" type="end"/>
+            
+                <lb/>condamnés aux <term type="verdict" ref="#travaux_forces">travaux forcés</term> à <term type="duree" ref="#perpetuite">perpétuité</term>. Jean Bayle 
+                <lb/>n’a pas recouru.
+                </p>
+                <p><note type="opinion_personnelle">Cette affaire, la plus importante de la session, a entraîné 
+                <lb/>des débats bruyants et difficiles. Mais la vérité en est si 
+                <lb/>clairement résultée que la déclaration du Jury a été 
+                <lb/>portée à l’unanimité. Si les circonstances aggravantes 
+                <lb/>ont été écartés, c’est que l’un des accusés étant beaucoup 
+                <lb/>moins coupable que l’autre, et le jury ne pouvant 
+                <lb/>établir de distinction entre eux, l’avis le plus favorable 
+                <lb/>a ainsi prévalu. <note type="circonstances_attenuantes">D’ailleurs la victime n’avait pas 
+                <lb/>succombé, les deux balles qu’elle devait recevoir dans 
+                <lb/>le corps n’ayant fait que lui traverser le bras</note></note>.
+                </p>
+            </div>
+            
+            <div type="conclusion">
+                <p>Ainsi, Monseigneur, sur 17 causes, il y a eu 
+                <lb/><term type="verdict">onze condamnations, cinq acquittements, et un renvoi</term>
+                <lb/>à une autre session. <note type="opinion_personnelle">Ce résultat avantageux à la société 
+                <lb/>est dû au zèle et à l’intelligence des citoyens composant 
+                <lb/>le Jury. Ce zèle redoublerait encore si la liste générale 
+                <lb/>comprenait un plus grand nombre de personne, et 
+                <lb/>surtout si la liste supplémentaire était formée de 
+                <lb/>tous les habitants de la ville, qui remplissent les 
+                <lb/>conditions exigées par la loi. On ne peut 
+                <lb/>dissimuler à votre Grandeur qu’un des plus grands 
+                <lb/>et peut-être le principal obstacle, qui, dans ce 
+                <lb/>département, s’oppose à l’amélioration de 
+                <lb/>l’institution du Jury, vient précisément de ce que 
+                <lb/>ce service, ne porte que sur une partie de ceux 
+                <lb/>qui devraient y être soumis</note>.
+                </p>
+                <p><note type="opinion_personnelle">Les deux visites que j’ai faites dans les 
+                <lb/>prisons de cette ville, ne m’ont pas fourni 
+                <lb/>d’observations nouvelles à présenter à votre 
+                <lb/>Grandeur. La petitesse du local, ne permettant 
+                <lb/>jamais  d’y faire les améliorations convenables. 
+                <lb/>Dans mon dernier rapport, j’avais fait connaître 
+                <lb/>les réparations qui avaient été faites, et 
+                <lb/>parlé des constructions qui avaient donné
+                
+                <pb n="7" type="end"/>    
+                
+                <lb/>l’espace nécessaire pour séparer les prisonniers 
+                <lb/>de différents <gap reason="illegible" quantity="1" unit="word"/>, rien n’a été fait depuis lors, 
+                <lb/>Quand à l’état des détenus, j’ai reconnu que leur 
+                <lb/>nourriture était <gap reason="illegible" quantity="1" unit="word"/>, mais il résulte toujours de 
+                <lb/>graves inconvénients de la communication qui existe, 
+                <lb/>forcément, entre les condamnés et les prévenus</note>.
+                </p>
+            </div>
+         
+            <closer>
+                <salute>Je suis avec un profond respect<lb/>Monseigneur,<lb/>De Votre Grandeur<lb/>Le très humble et obéissant serviteur</salute>
+                <lb/><signed><persName>Michoud</persName></signed>                         
+                <lb/><date when="1826-04-15">15 avril 1826</date>
+               </closer>
+            
+            <pb n="7" type="end"/>
+            
+        </body>
+    </text>
+    
+</TEI>
